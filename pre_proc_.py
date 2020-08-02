@@ -8,7 +8,7 @@ from pdfminer.pdfpage import PDFPage
 from io import StringIO
 import re
 import spacy
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm")    #'fr_core_news_sm' pretrained statistical models for French language
 
 
 
@@ -43,13 +43,13 @@ def remove_SpeChar(text): """ ANY SPECIAL WORDS WILL BE REMOVED """
     text = re.sub('\[.*?\]', '', text)
     text = re.sub(r'[^\w]', ' ', text)
     text= re.sub('\S*@\S*\s?', '', text)
-    text = re.sub('[!"#$%&()*+,./:;<=>?@[\]^_`{|}~‘’•]', '', text)
+    text = re.sub('[!"#$%&()*+,./:;<=>?@[\]^_`{|}~â€˜â€™â€¢]', '', text)
     text = re.sub('\w*\d\w*', '', text)
     text = " ".join(text.split())
     return text
 
 
-def remove_StopWords(text): """ ENGLISH STOPWRODS WILL BE REMOVED """
+def remove_StopWords(text): """STOPWRODS WILL BE REMOVED """
     sentence = nlp(text)
     filtered_sentence = ''
     token_list = []
@@ -62,7 +62,7 @@ def remove_StopWords(text): """ ENGLISH STOPWRODS WILL BE REMOVED """
     return filtered_sentence
 
 
-def get_lem(text): """ WORDS WILL BE LEMMATIZED TO FACILITE MATCHING WORDS """
+def get_lem(text): """ WORDS WILL BE LEMMATIZED """
     text = nlp(text)
     text = ' '.join([word.lemma_ if word.lemma_ != '-PRON-' else word.text for word in text])
     return text
