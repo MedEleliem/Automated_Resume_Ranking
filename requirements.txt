@@ -1,0 +1,9 @@
+pdfminer
+simpy.io
+regex
+nltk
+spacy
+os-sys
+docx2pdf
+python-Levenshtein
+pymongo
