@@ -5,26 +5,26 @@ import nlp_resume.text_extract.txt_preproc as te
 from pymongo import MongoClient
 
 if __name__ == '__main__':
-    print("This is an automated ranking resume application")
-    language = input('enter en or fr for the langauge treatement').lower()
-    connection_string = input('enter the connection string to MongoDB').lower()
+    print("This is an automated ranking resume application \n")
+    language = input('enter en or fr for the langauge treatement \n').lower()
+    connection_string = input('enter the connection string to MongoDB \n').lower()
 
     while True:
-        action = input("What should I do? [I]mport_files, [A]dd_Keywords, [S]earch_for_words, or [Q]uit?").upper()
+        action = input("What should I do? [I]mport_files, [A]dd_Keywords, [S]earch_for_words, or [Q]uit ? \n").upper()
 
         if action == 'I':
-            path = input('enter the path to resume files')
+            path = input('enter the path to resume files \n')
             txti.mongo_db_insert(connection_string, path, language)
 
         if action == 'A':
             keywords_dict = []
-            keywords_field = input('enter the field of keywords')
-            keywords_list = input("enter the list of keywords splitted by white-space")
+            keywords_field = input('enter the field of keywords \n')
+            keywords_list = input("enter the list of keywords splitted by white-space \n")
             keywords_list = keywords_list.split(' ')
             ki.get_keywords(keywords_field, keywords_list, language, connection_string)
 
         if action == 'S':
-            word = input('enter the sentence to search')
+            word = input('enter the sentence to search \n')
             word = te.main_PreProc(word,language)
             Client = MongoClient(connection_string)
             db = Client.NLPIntern
