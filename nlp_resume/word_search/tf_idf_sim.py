@@ -26,17 +26,17 @@ def tf_idf_(word,connection_string):
     freq_list=[]
     
     for i in range(tot_docs):
-        tokens = d.find({})[i].get('trigrams')
+        trigrams = d.find({})[i].get('trigrams')
         name = d.find({})[i].get('name')
         c=0
         n=0
-        for j in tokens:
+        for j in trigrams:
             score = word_sim(word,j)
             if score > 80 :
                 c=1
                 n+=1
         counter.append(c)
-        freq_list.append((n/len(tokens),name))
+        freq_list.append((n/len(trigrams),name))
     app_word_tot = sum(counter)    
     if app_word_tot!=0:
         idf = log(tot_docs/app_word_tot)
